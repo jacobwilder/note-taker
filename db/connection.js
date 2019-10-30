@@ -8,9 +8,9 @@ if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
-    user: "root",
-    password: "", // add your local password here.
-    database: "" // add your db name here
+    user: "root", // FIXME: Establish a connection to your MySQL Database
+    password: "", // https://www.npmjs.com/package/mysql#establishing-connections
+    database: "note_db"
   });
 }
 
