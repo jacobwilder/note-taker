@@ -9,7 +9,7 @@ if (process.env.JAWSDB_URL) {
     host: "localhost",
     port: 3306,
     user: "root", // FIXME: Establish a connection to your MySQL Database
-    password: "", // https://www.npmjs.com/package/mysql#establishing-connections
+    password: "26Gamers8!", // https://www.npmjs.com/package/mysql#establishing-connections
     database: "note_db"
   });
 }

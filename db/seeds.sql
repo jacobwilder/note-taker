@@ -1,6 +1,6 @@
 USE note_db;
 
-INSERT INTO notes (title, body)
+INSERT INTO notes (title, text)
 VALUES
   ("Note Taker App", "Complete this homework by Friday, November 1, 2019 11:59 PM"),
   ("READ THE DOCS", "Read documentation about... Node, Express, MySQL, etc."),

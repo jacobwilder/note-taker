@@ -11,3 +11,5 @@ CREATE TABLE notes
   title VARCHAR(255) NOT NULL,
   PRIMARY KEY(id)
 );
+
+SELECT * FROM notes;
