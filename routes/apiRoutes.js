@@ -32,4 +32,17 @@ router.delete('/api/notes/:id', function (req, res) {
     });
 });
 
+router.put('/api/notes/:id', function (req, res) {
+  connection.query(
+    'UPDATE notes SET ? WHERE id = ?', [req.body, req.params.id], function (err, result) {
+      if (err) {
+        return res.status(500).end();
+      }
+      else if (result.changedRows === 0) {
+        return res.status(404).end();
+      }
+      console.log(result);
+      res.status(200).end();
+  });
+});
 module.exports = router;

@@ -39,6 +39,31 @@ var handleNoteDelete = function(event) {
   });
 };
 
+var handleNoteUpdate = function(event) {
+  event.stopPropagation();
+  var note = $(this)
+    .parents(".list-group-item")
+    .data();
+
+  var updatedNote = {
+    title: $(".note-title").val().trim(),
+    text: $(".note-textarea").val().trim()
+  }
+
+  var id = $(this).data("id");
+
+
+    $.ajax({
+      url: "/api/notes/" + note.id,
+      method: "PUT",
+      data: updatedNote
+    }).then(function() {
+      console.log("Note updated!");
+      location.assign("/notes")
+    });
+};
+
+
 // Renders note titles
 var renderNoteList = function(notes) {
   $noteList.empty();
@@ -53,11 +78,12 @@ var renderNoteList = function(notes) {
     var $titleSpan = $("<span class='font-weight-bold'>").text(note.title);
     var $delBtn = $(
       "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
-    );
+    ).css("margin-left", "5px");
+    var $updateBtn = $("<i href='/notes/" + note.id + "'" + "class='fas fa-pencil-alt float-right text-warning update-note'></i>")
 
     var $noteP = $("<p class='mt-2'>").text(note.text);
 
-    $titleDiv.append($titleSpan, $delBtn);
+    $titleDiv.append($titleSpan, $delBtn, $updateBtn);
 
     $li.append($titleDiv, $noteP);
     noteListItems.push($li);
@@ -78,6 +104,7 @@ var getAndRenderNotes = function() {
 
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".delete-note", handleNoteDelete);
+$noteList.on("click", ".update-note", handleNoteUpdate);
 
 // Pulls initial note table
 getAndRenderNotes();
